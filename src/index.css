@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-saffron: #FF671F;
+  --color-green-india: #046A38;
+}
+
+/* Base Body Styles - Pure Minimalist Dark Mode */
+html, body {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3F3F46;
+}
+
+/* =========================================================================
+   Smooth Tiranga Animation on Hover
+   Flows the national colors (Saffron, White, Green) continuously on hover
+   ========================================================================= */
+
+@keyframes tricolorFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* =========================================================================
+   Thick, Rounded Buttons with Animated Tri-Color Hover
+   ========================================================= */
+
+/* Primary Button: Thick, Rounded-Full, Generous Padding */
+.btn-tricolor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  color: #FFFFFF;
+  border: 2px solid #27272A;
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-tricolor::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg, 
+    #FF671F 0%, 
+    #FFA040 20%, 
+    #FFFFFF 35%, 
+    #FFFFFF 50%, 
+    #046A38 65%, 
+    #138808 80%, 
+    #FF671F 100%
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease;
+  z-index: 2;
+}
+
+.btn-tricolor:hover {
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(255, 103, 31, 0.25), 0 12px 32px -8px rgba(4, 106, 56, 0.25);
+}
+
+.btn-tricolor:hover::before {
+  opacity: 1;
+  animation: tricolorFlow 2.8s ease infinite;
+}
+
+/* Secondary Button: Crisp White Fill with Animated Tricolor Hover */
+.btn-tricolor-white {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 2px solid #FFFFFF;
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  isolation: isolate;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-tricolor-white::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg, 
+    #FF671F 0%, 
+    #FFA040 20%, 
+    #FFFFFF 35%, 
+    #FFFFFF 50%, 
+    #046A38 65%, 
+    #138808 80%, 
+    #FF671F 100%
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.btn-tricolor-white:hover {
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px -8px rgba(255, 103, 31, 0.3), 0 14px 35px -8px rgba(4, 106, 56, 0.3);
+}
+
+.btn-tricolor-white:hover::before {
+  opacity: 1;
+  animation: tricolorFlow 2.8s ease infinite;
+}
+
+/* Ghost Button with Animated Tricolor Hover */
+.btn-tricolor-ghost {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #E4E4E7;
+  border: 2px solid #27272A;
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  isolation: isolate;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-tricolor-ghost::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg, 
+    #FF671F 0%, 
+    #FFA040 20%, 
+    #FFFFFF 35%, 
+    #FFFFFF 50%, 
+    #046A38 65%, 
+    #138808 80%, 
+    #FF671F 100%
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.btn-tricolor-ghost:hover {
+  border-color: transparent;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.btn-tricolor-ghost:hover::before {
+  opacity: 1;
+  animation: tricolorFlow 2.8s ease infinite;
+}
+
+/* Disabled State Button */
+.btn-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #71717A;
+  border: 1.5px solid #27272A;
+  border-radius: 9999px;
+  padding: 0.875rem 2.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: not-allowed;
+  user-select: none;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+/* Card Hover Accent with Animated Tri-Color Perimeter */
+.card-dark-hover {
+  position: relative;
+  background-color: #0A0A0C;
+  border: 1px solid #1F1F23;
+  border-radius: 1.75rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-dark-hover::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 1.75rem;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg, 
+    #FF671F 0%, 
+    #FFA040 25%, 
+    #FFFFFF 45%, 
+    #FFFFFF 55%, 
+    #046A38 75%, 
+    #138808 100%
+  );
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.card-dark-hover:hover {
+  border-color: transparent;
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -18px rgba(0, 0, 0, 0.8), 0 0 30px -10px rgba(255, 103, 31, 0.15);
+}
+
+.card-dark-hover:hover::before {
+  opacity: 1;
+  animation: tricolorFlow 3.5s ease infinite;
+}
+
+/* Subtle Architectural Grid */
+.bg-grid-dark {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
